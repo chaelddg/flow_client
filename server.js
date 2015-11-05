@@ -36,7 +36,11 @@ if (!isProduction) {
 
 primus.on('connection', function (spark) {
 
-    spark.send('chat_socket', 'welcome to the server');
+    spark.on('chat_send', function(data) {
+        console.log('chat_send inside');
+        primus.send('chat_socket', 'chat_message');
+
+    });
 
 });
 

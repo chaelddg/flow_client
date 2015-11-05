@@ -15,10 +15,10 @@ class AppStore extends BaseStore {
         let self = this;
         let host = window.location.host;
         let path = host.split(":");
-        let port = ":3001";
+        let port = ":3000";
 
         let url = path[0] + port;
-        self.primus = new Primus('ws://'+url+'/');
+        self.primus = new Primus('http://'+url+'/');
         return self.primus;
     }
 

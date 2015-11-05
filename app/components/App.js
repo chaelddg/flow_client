@@ -15,6 +15,8 @@ class App extends AppBase {
         // console.log(this.props.messages);
         // this.state = { messages: this.props.messages }
         this._bind('_handleClick');
+        let self = this;
+        self.primus = AppStore._getSocket();
     }
 
     _handleClick(e) {
@@ -27,7 +29,10 @@ class App extends AppBase {
 
     
         if (chat_name !== null && chat_msg !== null || chat_name.trim() !== ""  && chat_msg.trim() !== "") {
+            let self = this;
+            
             AppActions.addMessage(chat_name, chat_msg);
+            // self.primus.send('chat_send',  { "res": "sent" });
 
         } else {
             return;

@@ -32,9 +32,13 @@ class View extends React.Component {
     }
 
     componentDidMount() {
-        console.log(self.primus);
-        this._Message();
-        AppStore.addChangeListener(this._onChange);
+        let self = this;
+        self.primus.on('chat_socket', function(data) {
+
+            self._Message();
+        
+        });
+        AppStore.addChangeListener(self._onChange);
     }
 
     componentWillUnmount() {
@@ -43,6 +47,7 @@ class View extends React.Component {
 
     _onChange() {
         var self = this;
+        self.primus.send('chat_send',  { "res": "sent" });
         setTimeout(function(){
             self.setState({
                 messages: self._Message()
