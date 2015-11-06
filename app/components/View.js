@@ -47,11 +47,11 @@ class View extends React.Component {
 
     _onChange() {
         var self = this;
-        self.primus.send('chat_send',  { "res": "sent" });
         setTimeout(function(){
             self.setState({
                 messages: self._Message()
             });
+            self.primus.send('chat_send',  { "res": "sent" });
         }, 30)
     }
 
