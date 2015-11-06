@@ -14,6 +14,7 @@ class View extends React.Component {
         this._Message = this._Message.bind(this);
         let self = this;
         self.primus = AppStore._getSocket();
+        self._Message();
     }
 
     _Message() {
